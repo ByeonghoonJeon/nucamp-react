@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import {
+  Card,
+  CardImg,
+  CardImgOverlay,
+  CardText,
+  CardBody,
+  CardTitle,
+} from "reactstrap";
 
 class CampsiteInfo extends React.Component {
   constructor(props) {
@@ -17,6 +24,16 @@ class CampsiteInfo extends React.Component {
         </Card>
       </div>
     );
+  }
+  renderComments(comments) {
+    if (this.props.comments) {
+      return (
+        <div className="col-md-5 m-1">
+          <h4>Comments</h4>
+          {comments.map()}
+        </div>
+      );
+    }
   }
 
   render() {
