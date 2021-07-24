@@ -33,7 +33,12 @@ class CampsiteInfo extends React.Component {
           <h4>Comments</h4>
           {comments.map(comment =>{
             return(
-              <div key={comment.id}>{comment.text}</div>  
+              <div key={comment.id}>
+                <strong>{comment.text}</strong><br/>
+                --{comment.author},{" "} 
+                {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                <br/><br/>
+              </div>  
               )
             })}
         </div>
