@@ -9,7 +9,7 @@ export const CAMPSITES = [
             {
                 id: 0,
                 rating: 5, 
-                text: "What a magnificent view!",
+                text: "This comment is for id 0",
                 author: "Tinus Lorvaldes",
                 date: "2018-10-25T16:30Z"
             },
@@ -53,7 +53,7 @@ export const CAMPSITES = [
             {
                 id: 0,
                 rating: 5, 
-                text: "What a magnificent view!",
+                text: "This comment is for id 1",
                 author: "Tinus Lorvaldes",
                 date: "2018-10-25T16:30Z"
             },
@@ -97,7 +97,7 @@ export const CAMPSITES = [
             {
                 id: 0,
                 rating: 5, 
-                text: "What a magnificent view!",
+                text: "This comment is for id 2",
                 author: "Tinus Lorvaldes",
                 date: "2018-10-25T16:30Z"
             },
@@ -141,7 +141,7 @@ export const CAMPSITES = [
             {
                 id: 0,
                 rating: 5, 
-                text: "What a magnificent view!",
+                text: "This comment is for id 3",
                 author: "Tinus Lorvaldes",
                 date: "2018-10-25T16:30Z"
             },
