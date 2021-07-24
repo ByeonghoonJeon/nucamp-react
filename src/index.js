@@ -11,7 +11,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App testprop="hello" />
+    <App testprop="" />
   </React.StrictMode>,
   document.getElementById('root')
 );
