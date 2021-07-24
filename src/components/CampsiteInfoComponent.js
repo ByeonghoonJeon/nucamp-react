@@ -23,7 +23,7 @@ class CampsiteInfo extends React.Component {
             <CardText>{campsite.description}</CardText>
           </CardBody>
         </Card>
-      </div> 
+      </div>
     );
   }
   renderComments(comments) {
@@ -31,38 +31,37 @@ class CampsiteInfo extends React.Component {
       return (
         <div className="col-md-5 m-1">
           <h4>Comments</h4>
-          {comments.map(comment =>{
-            return(
+          {comments.map((comment) => {
+            return (
               <div key={comment.id}>
-                <strong>{comment.text}</strong><br/>
-                --{comment.author},{" "} 
-                {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
-                <br/><br/>
-              </div>  
-              )
-            })}
+                <strong>{comment.text}</strong>
+                <br />
+                --{comment.author},{" "}
+                {new Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                }).format(new Date(Date.parse(comment.date)))}
+                <br />
+                <br />
+              </div>
+            );
+          })}
         </div>
       );
     }
 
-    return(
-      <div></div>
-    )
-
+    return <div></div>;
   }
-
-  
-
 
   render() {
     if (this.props.campsite) {
       return (
         <div className="row">
-          {this.renderCampsite(this.props.campsite)} 
+          {this.renderCampsite(this.props.campsite)}
           {this.renderComments(this.props.campsite.comments)}
         </div>
       );
-      
     } else {
       return <div></div>;
     }
