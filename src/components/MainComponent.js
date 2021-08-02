@@ -30,7 +30,7 @@ class Main extends Component {
         <CampsiteInfo
           campsite={
             this.state.campsites.filter(
-              (campsite) => CompositionEvent.id === this.state.selectedCampsite
+              (campsite) => campsite.id === this.state.selectedCampsite
             )[0]
           }
         />
