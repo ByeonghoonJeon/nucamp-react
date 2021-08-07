@@ -1,13 +1,23 @@
 import React from "react";
-import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardImgOverlay,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
 function RenderDirectoryItems({ campsite }) {
   return (
     <Card>
-      <CardImg width="100%" src={campsite.image} alt={campsite.name} />
-      <CardImgOverlay>
-        <CardTitle>{campsite.name}</CardTitle>
-      </CardImgOverlay>
+      <Link to={`/directory/${campsite.id}`}>
+        <CardImg width="100%" src={campsite.image} alt={campsite.name} />
+        <CardImgOverlay>
+          <CardTitle>{campsite.name}</CardTitle>
+        </CardImgOverlay>
+      </Link>
     </Card>
   );
 }
@@ -22,7 +32,61 @@ function Directory(props) {
 
   return (
     <div className="container">
+      <div className="row">
+        <div className="col">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/home">Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>Directory</BreadcrumbItem>
+          </Breadcrumb>
+          <h2>Directory</h2>
+          <hr />
+        </div>
+      </div>
       <div className="row">{directory}</div>
+    </div>
+  );
+}
+
+/////////////////////////////////////////////////////////////////////
+function RenderAboutItems({ partner }) {
+  return (
+    <Card>
+      <Link to={`/aboutus/${partner.id}`}>
+        <CardImg width="100%" src={partner.image} alt={partner.name} />
+        <CardImgOverlay>
+          <CardTitle>{partner.name}</CardTitle>
+        </CardImgOverlay>
+      </Link>
+    </Card>
+  );
+}
+
+function About(props) {
+  const partner = props.partners.map((partner) => {
+    return (
+      <div key={partner.id} className="col-md-5 m-1">
+        <RenderDirectoryItems campsite={partner} />
+      </div>
+    );
+  });
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/home">Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>About Us</BreadcrumbItem>
+          </Breadcrumb>
+          <h2>About Us</h2>
+          <hr />
+        </div>
+      </div>
+      <div className="row">{partner}</div>
     </div>
   );
 }
