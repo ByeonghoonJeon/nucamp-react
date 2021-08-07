@@ -71,7 +71,7 @@ class Main extends Component {
           <Route
             exact
             path="/aboutus"
-            render={() => <About campsites={this.state.partners} />}
+            render={() => <Directory campsites={this.state.partners} />}
           />
           <Redirect to="/home" />
         </Switch>

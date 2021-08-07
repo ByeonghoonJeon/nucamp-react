@@ -50,45 +50,45 @@ function Directory(props) {
 }
 
 /////////////////////////////////////////////////////////////////////
-function RenderAboutItems({ partner }) {
-  return (
-    <Card>
-      <Link to={`/aboutus/${partner.id}`}>
-        <CardImg width="100%" src={partner.image} alt={partner.name} />
-        <CardImgOverlay>
-          <CardTitle>{partner.name}</CardTitle>
-        </CardImgOverlay>
-      </Link>
-    </Card>
-  );
-}
+// function RenderAboutItems({ partner }) {
+//   return (
+//     <Card>
+//       <Link to={`/aboutus/${partner.id}`}>
+//         <CardImg width="100%" src={partner.image} alt={partner.name} />
+//         <CardImgOverlay>
+//           <CardTitle>{partner.name}</CardTitle>
+//         </CardImgOverlay>
+//       </Link>
+//     </Card>
+//   );
+// }
 
-function About(props) {
-  const partner = props.partners.map((partner) => {
-    return (
-      <div key={partner.id} className="col-md-5 m-1">
-        <RenderDirectoryItems campsite={partner} />
-      </div>
-    );
-  });
+// function About(props) {
+//   const partner = props.partners.map((partner) => {
+//     return (
+//       <div key={partner.id} className="col-md-5 m-1">
+//         <RenderDirectoryItems campsite={partner} />
+//       </div>
+//     );
+//   });
 
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <Breadcrumb>
-            <BreadcrumbItem>
-              <Link to="/home">Home</Link>
-            </BreadcrumbItem>
-            <BreadcrumbItem active>About Us</BreadcrumbItem>
-          </Breadcrumb>
-          <h2>About Us</h2>
-          <hr />
-        </div>
-      </div>
-      <div className="row">{partner}</div>
-    </div>
-  );
-}
+//   return (
+//     <div className="container">
+//       <div className="row">
+//         <div className="col">
+//           <Breadcrumb>
+//             <BreadcrumbItem>
+//               <Link to="/home">Home</Link>
+//             </BreadcrumbItem>
+//             <BreadcrumbItem active>About Us</BreadcrumbItem>
+//           </Breadcrumb>
+//           <h2>About Us</h2>
+//           <hr />
+//         </div>
+//       </div>
+//       <div className="row">{partner}</div>
+//     </div>
+//   );
+// }
 
 export default Directory;
