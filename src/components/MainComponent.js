@@ -49,9 +49,11 @@ class Main extends Component {
           comments={this.state.comments.filter(
             (comment) => comment.campsiteId === +match.params.campsiteId
           )}
-          partners={this.state.comments.filter(
-            (partner) => partner.campsiteId === +match.params.campsiteId
-          )}
+          partners={
+            this.state.partners.filter(
+              (partner) => partner.campsiteId === +match.params.campsiteId
+            )[0]
+          }
         />
       );
     };
@@ -61,18 +63,25 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route path="/home" component={HomePage} />
+
           <Route
             exact
             path="/directory"
             render={() => <Directory campsites={this.state.campsites} />}
           />
+
           <Route path="/directory/:campsiteId" component={CampsiteWithId} />
+
           <Route exact path="/contactus" component={Contact} />
+
           <Route
             exact
             path="/aboutus"
-            render={() => <Directory campsites={this.state.partners} />}
+            render={() => <About partners={this.state.partners} />}
           />
+
+          <Route path="/aboutus/:campsiteId" component={CampsiteWithId} />
+
           <Redirect to="/home" />
         </Switch>
         <Footer />
