@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import { CAMPSITES } from "../shared/campsites";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 function RenderCampsite({ campsite }) {
   return (
@@ -80,12 +81,12 @@ function CampsiteInfo(props) {
   }
 }
 
+const pencilIcon = <FontAwesomeIcon icon={faPencilAlt} />;
 class CommentForm extends React.Component {
   render() {
     return (
       <Button outline fg-lg>
-        <FontAwesomeIcon icon="coffee" />
-        Submit Comment
+        {pencilIcon} Submit Comment
       </Button>
     );
   }
