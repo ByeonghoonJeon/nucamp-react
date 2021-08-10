@@ -4,14 +4,25 @@ import {
   CardImg,
   CardText,
   CardBody,
+  Col,
+  Collapse,
   Breadcrumb,
   BreadcrumbItem,
   Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Input,
+  FormText,
+  Label,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { CAMPSITES } from "../shared/campsites";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { Control, LocalForm, Errors } from "react-redux-form";
 
 function RenderCampsite({ campsite }) {
   return (
@@ -83,11 +94,81 @@ function CampsiteInfo(props) {
 
 const pencilIcon = <FontAwesomeIcon icon={faPencilAlt} />;
 class CommentForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleNav = this.toggleNav.bind(this);
+    this.state = {
+      isNavOpen: false,
+      isModalOpen: false,
+    };
+
+    this.toggleNav = this.toggleNav.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.submitComment = this.submitComment.bind(this);
+  }
+
+  toggleNav() {
+    this.setState({
+      isNavOpen: !this.state.isNavOpen,
+    });
+  }
+
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen,
+    });
+  }
+
+  submitComment(event) {
+    alert(
+      `Rating: ${this.rating.value} Your Name: ${this.yourname.value} Comment: ${this.comment.value}`
+    );
+    this.toggleModal();
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <Button outline fg-lg>
-        {pencilIcon} Submit Comment
-      </Button>
+      <React.Fragment>
+        <Button outline fg-lg onClick={this.toggleModal}>
+          {pencilIcon} Submit Comment
+        </Button>
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+          <ModalHeader toggle={this.toggleModal}>Submit comment</ModalHeader>
+          <ModalBody>
+            <LocalForm onSubmit={this.submitComment}>
+              <FormGroup>
+                <Label for="rating">Rating</Label>
+                <Col sm={10}>
+                  <Control.select model=".rating" id="rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Control.select>
+                </Col>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="yourname">Your Name</Label>
+                <Input
+                  type="yourname"
+                  id="yourname"
+                  name="yourname"
+                  innerRef={(input) => (this.yourname = input)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="comment">Comment</Label>
+                <Input type="textarea" name="comment" id="comment" />
+              </FormGroup>
+              <Button type="submit" value="submit" color="primary">
+                Submit
+              </Button>
+            </LocalForm>
+          </ModalBody>
+        </Modal>
+      </React.Fragment>
     );
   }
 }
