@@ -6,9 +6,11 @@ import {
   CardBody,
   Breadcrumb,
   BreadcrumbItem,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { CAMPSITES } from "../shared/campsites";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function RenderCampsite({ campsite }) {
   return (
@@ -43,6 +45,7 @@ function RenderComments({ comments }) {
             </div>
           );
         })}
+        <CommentForm />
       </div>
     );
   }
@@ -74,6 +77,17 @@ function CampsiteInfo(props) {
     );
   } else {
     return <div />;
+  }
+}
+
+class CommentForm extends React.Component {
+  render() {
+    return (
+      <Button outline fg-lg>
+        <FontAwesomeIcon icon="coffee" />
+        Submit Comment
+      </Button>
+    );
   }
 }
 
