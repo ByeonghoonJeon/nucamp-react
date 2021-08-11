@@ -40,7 +40,7 @@ function RenderCampsite({ campsite }) {
     </div>
   );
 }
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, campsiteId }) {
   if (comments) {
     return (
       <div className="col-md-5 m-1">
@@ -61,7 +61,7 @@ function RenderComments({ comments }) {
             </div>
           );
         })}
-        <CommentForm />
+        <CommentForm campsiteId={campsiteId} addComment={addComment} />
       </div>
     );
   }
@@ -87,7 +87,11 @@ function CampsiteInfo(props) {
         </div>
         <div className="row">
           <RenderCampsite campsite={props.campsite} />
-          <RenderComments comments={props.comments} />
+          <RenderComments
+            comments={props.comments}
+            addComment={props.addComment}
+            campsiteId={props.campsite.id}
+          />
         </div>
       </div>
     );
@@ -100,16 +104,15 @@ const pencilIcon = <FontAwesomeIcon icon={faPencilAlt} />;
 class CommentForm extends React.Component {
   constructor(props) {
     super(props);
-    this.toggleNav = this.toggleNav.bind(this);
     this.state = {
       isNavOpen: false,
       isModalOpen: false,
     };
 
-    this.toggleNav = this.toggleNav.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.submitComment = this.submitComment.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.submitComment = this.submitComment.bind(this);
+    // this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   validate(author) {
@@ -138,28 +141,37 @@ class CommentForm extends React.Component {
     });
   }
 
-  handleInputChange(event) {
-    this.setState(event);
-    // console.log("ok", event);
-    // const target = event.target;
-    // const name = target.name;
-    // const value = target.type === "checkbox" ? target.checked : target.value;
-
-    // this.setState({
-    //   [name]: value,
-    // });
-  }
-
-  submitComment(event) {
-    const { rating, author, text } = this.state;
-    const formState = {
-      rating,
-      author,
-      text,
-    };
-    alert(`Current State is: ${JSON.stringify(formState)}`);
+  handleSubmit(values) {
     this.toggleModal();
+    this.props.addComment(
+      this.props.campsiteId,
+      values.rating,
+      values.author,
+      values.text
+    );
   }
+
+  // handleInputChange(event) {
+  //   this.setState(event);
+  //   // console.log("ok", event);
+  //   // const target = event.target;
+  //   // const name = target.name;
+  //   // const value = target.type === "checkbox" ? target.checked : target.value;
+
+  //   // this.setState({
+  //   //   [name]: value,
+  //   // });
+  // }
+
+  // submitComment(event) {
+  //   const { rating, author, text } = this.state;
+  //   const formState = {
+  //     rating,
+  //     author,
+  //     text,
+  //   };
+  //   this.toggleModal();
+  // }
 
   render() {
     return (
@@ -170,10 +182,7 @@ class CommentForm extends React.Component {
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Submit comment</ModalHeader>
           <ModalBody>
-            <LocalForm
-              onSubmit={this.submitComment}
-              onChange={this.handleInputChange}
-            >
+            <LocalForm onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <Label for="rating">Rating</Label>
                 <Control.select
