@@ -21,7 +21,7 @@ export const CAMPSITES = [
     id: 2,
     name: "Breadcrumb Trail Campground",
     image: "/assets/images/breadcrumb-trail.jpg",
-    elevation: 2901,
+    elevation: 2901,  
     featured: false,
     description:
       "Let NuCamp be your guide to this off-the-beaten-path, hike-in-only campground.",
